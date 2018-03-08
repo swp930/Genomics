@@ -10,7 +10,6 @@ public class Parse {
   public static void showFiles(File[] files) {
     for(File file: files){
       if (file.isDirectory()) {
-            //System.out.println("Directory: " + file.getName());
             showFiles(file.listFiles()); // Calls same method again.
         } else {
             System.out.println("File: " + file.getName());
@@ -28,14 +27,13 @@ public class Parse {
       ArrayList<String> columnList = new ArrayList<>();
       while((readLine = br.readLine()) != null) {
           if(readLine.charAt(0) != '#'){
-              //out.println(readLine);
               if(prevLine == null){
                 prevLine = readLine;
               }
               else{
                 boolean matches = compare(prevLine, readLine);
                 if(matches){
-                  matchList.add(new Match(prevLine, readLine));
+                  matchList.add(new Match("chr1 "+id1, readLine));
                   out.println(new Match(prevLine, readLine));
                 }
                 prevLine = readLine;
@@ -50,8 +48,10 @@ public class Parse {
   }
 
   public static boolean compare(String str1, String str2){
-    String[] arr = str1.split(" ");
-    String[] arr2 = str2.split(" ");
-    return true;
+    String[] arr = str1.split("\\t");
+    String[] arr2 = str2.split("\\t");
+    int num1 = Integer.parseInt(arr[1]), num2 = Integer.parseInt(arr[1]);
+    int dist = (int) Math.abs(num1 - num2);
+    return dist <= 2 && (str1.contains("missense_variant") || str2.contains("missense_variant"));
   }
 }
