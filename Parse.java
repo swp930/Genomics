@@ -38,6 +38,7 @@ public class Parse {
 
             //Checking columns four and five, for current line being read is done here   
             CheckColumnsFourAndFive(readLine);
+
             //proceed to do matching arithmetic
               // if(prevLine == null){
               //   prevLine = readLine;
@@ -54,6 +55,7 @@ public class Parse {
       }
       // out.println(matchList);
       out.println(columnSamples);
+      columnSamples.clear(); //reset list for next time
     }
     catch(Exception e){
       System.err.println(e);
@@ -97,8 +99,11 @@ public class Parse {
 
   int token4Length = token4.length();
   int token5Length = token5.length();
-  
-  //make note of the sample's name and ID
+
+  /* 
+    make note of the sample's name and ID for whose columns is not a length of 1 (0 or more than 1 means an indel
+    like an insertion or deletion)
+  */
   if (token4Length != 1 || token5Length != 1) {
     columnSamples.add(new sampleColumnWrapper(sampleName, sampleID));
     }
