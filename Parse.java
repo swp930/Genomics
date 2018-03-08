@@ -40,20 +40,9 @@ public class Parse {
                 }
                 prevLine = readLine;
               }
-              /*else {
-                currLine = readLine;
-                boolean matches = compare(prevLine, currLine);
-                if(matches){
-                  matchList.add(new Match(prevLine, currLine));
-                  out.println(matchList);
-                }
-              }
-              if(((int)Math.random()*10)==0){
-
-              }*/
           }
-          out.println(matchList);
       }
+      out.println(matchList);
     }
     catch(Exception e){
       System.err.println(e);
@@ -61,6 +50,8 @@ public class Parse {
   }
 
   public static boolean compare(String str1, String str2){
+    String[] arr = str1.split(" ");
+    String[] arr2 = str2.split(" ");
     return true;
   }
 }
